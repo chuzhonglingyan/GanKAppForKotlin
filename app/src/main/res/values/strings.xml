@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">GanKAppForKotlin</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+
+
+    <string name="item_author">作&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;者：</string>
+    <string name="item_published">发布日期：</string>
+    <string name="item_desc">功能描述：</string>
+    <string name="item_url">链&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;接：</string>
+
+    <string name="action_about">关于</string>
+    <string name="action_share">分享</string>
+    <string name="saving_picture">保存图片</string>
+    <string name="picture_has_save_to">图片已保存至 %s 文件夹</string>
+    <string name="picture_save_fail">图片保存失败，请再次尝试保存！</string>
+    <string name="share_text">发现了一款非常美观的App「干货集锦」，每天一张精选妹纸图、一个精选小视频（视频源地址播放），一篇程序猿干货，完全开源不收费，太赞了!
+        参考了http://fir.im/mengmeizhi的项目 推荐~：https://github.com/jtsky/gank.git
+    </string>
 </resources>

@@ -1,0 +1,23 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yuntian.baselibs">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <!--振动的权限-->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <!--设置窗口可以显示控件的权限-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+    <application>
+        <meta-data
+            android:name="com.yuntian.baselibs.glide.GlideModelConfig"
+            android:value="GlideModule" />
+        <meta-data
+            android:name="com.yuntian.baselibs.glide.UnsafeOkHttpGlideModule"
+            android:value="GlideModule" />
+    </application>
+
+</manifest>
