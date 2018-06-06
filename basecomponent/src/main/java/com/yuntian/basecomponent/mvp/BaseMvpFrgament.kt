@@ -23,7 +23,7 @@ abstract class BaseMvpFrgament<P : BasePresenter<*, *>> : BaseLazyFragment(), Ba
 
     public override fun init() {
         setupActivityComponent(applicationComponent)
-            mPresenter.onCreate()
+        mPresenter.onCreate()
     }
 
     /**

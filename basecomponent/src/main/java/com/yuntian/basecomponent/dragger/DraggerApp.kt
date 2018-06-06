@@ -19,6 +19,8 @@ open class DraggerApp : BaseApp() {
                 .builder()
                 .appModule(AppModule(this))
                 .build();
+
+
     }
 
     fun component(): AppComponent {

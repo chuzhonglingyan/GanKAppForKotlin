@@ -1,83 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-    <data>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
 
-        <import type="android.view.View"/>
-        <variable
-            name="ganArticleItem"
-            type="com.yuntian.gankapp.entity.GankInfo" />
-    </data>
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/default_image_loading" />
 
-    <android.support.v7.widget.CardView
+    <!--app:cardElevation="8dp"-->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/CardViewStyle01"
-        android:layout_marginTop="10dp"
-        >
+        android:layout_marginLeft="80dp"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
 
-        <ImageView
-            android:id="@+id/iv_icon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/default_image_loading"
-            />
-
-        <!--app:cardElevation="8dp"-->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_ganArticleItem_author"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="80dp"
-            android:padding="@dimen/activity_horizontal_margin"
-            >
+            android:text="@{@string/item_author + ganArticleItem.who}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="@dimen/text_size_14"
+            tools:text="@string/item_author" />
 
-            <TextView
-                android:id="@+id/tv_ganArticleItem_author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                tools:text="@string/item_author"
-                android:text="@{@string/item_author + ganArticleItem.who}"
-                android:textSize="@dimen/text_size_14"/>
+        <TextView
+            android:id="@+id/tv_ganArticleItem_publish_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/divider_margin"
+            android:text="@{@string/item_published + ganArticleItem.publishedAt}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="@dimen/text_size_14"
+            tools:text="@string/item_published" />
 
-            <TextView
-                android:id="@+id/tv_ganArticleItem_publish_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                tools:text="@string/item_published"
-                android:text="@{@string/item_published + ganArticleItem.publishedAt}"
-                android:textSize="@dimen/text_size_14"
-                android:layout_marginTop="@dimen/divider_margin"
-                />
-            <TextView
-                android:id="@+id/tv_ganArticleItem_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                tools:text="@string/item_desc"
-                android:text="@{@string/item_desc + ganArticleItem.desc}"
-                android:textSize="@dimen/text_size_14"
-                android:layout_marginTop="@dimen/divider_margin"
-                />
-            <TextView
-                android:id="@+id/tv_ganArticleItem_url"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                tools:text="@string/item_url"
-                android:text="@{@string/item_url + ganArticleItem.url}"
-                android:textSize="@dimen/text_size_14"
-                android:layout_marginTop="@dimen/divider_margin"
-                android:autoLink="web"
-                />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_ganArticleItem_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/divider_margin"
+            android:text="@{@string/item_desc + ganArticleItem.desc}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="@dimen/text_size_14"
+            tools:text="@string/item_desc" />
 
-    </android.support.v7.widget.CardView>
+        <TextView
+            android:id="@+id/tv_ganArticleItem_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/divider_margin"
+            android:autoLink="web"
+            android:text="@{@string/item_url + ganArticleItem.url}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="@dimen/text_size_14"
+            tools:text="@string/item_url" />
+    </LinearLayout>
 
-</layout>
+</android.support.v7.widget.CardView>

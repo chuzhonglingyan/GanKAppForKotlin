@@ -3,16 +3,14 @@ package com.yuntian.gankappforkotlin.ui.gank.inject
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
-
-import com.yuntian.adapterlib.base.BaseRvAdapter
 import com.yuntian.adapterlib.base.TypeInterface
+import com.yuntian.basecomponent.base.BaseRvAdapterK
 import com.yuntian.basecomponent.dragger.scope.ActivityScope
 import com.yuntian.baselibs.adapter.BaseFPageAdapter
 import com.yuntian.baselibs.adapter.BaseFPageStateAdapter
 import com.yuntian.gankappforkotlin.ui.gank.mvp.GankContract
 import com.yuntian.gankappforkotlin.ui.gank.mvp.GankModel
 import com.yuntian.gankappforkotlin.ui.gank.mvp.GankPresenter
-
 import dagger.Module
 import dagger.Provides
 
@@ -21,7 +19,7 @@ import dagger.Provides
  * Created by ChuYingYan on 2018/5/1.
  */
 @Module
-class GankModule(private val view: GankContract.View) {
+class GankModule( val view: GankContract.View) {
 
 
     val fragmentActivty: FragmentActivity?
@@ -37,37 +35,35 @@ class GankModule(private val view: GankContract.View) {
 
     @ActivityScope
     @Provides
-    internal fun provideModel(model: GankModel): GankContract.Model = model
+    fun provideModel(model: GankModel): GankContract.Model = model
 
     @ActivityScope
     @Provides
-    internal fun provideView(): GankContract.View {
-        return this.view
-    }
+    fun provideView(): GankContract.View =this.view
 
 
     @ActivityScope
     @Provides
-    internal fun providePresenter(presenter: GankPresenter): GankContract.Presenter {
+    fun providePresenter(presenter: GankPresenter): GankContract.Presenter {
         return presenter
     }
 
     @ActivityScope
     @Provides
-    internal fun provideBaseAdapter(): BaseRvAdapter<*> {
-        return object : BaseRvAdapter<TypeInterface>() {}
+    fun provideBaseAdapter(): BaseRvAdapterK<*> {
+        return object : BaseRvAdapterK<TypeInterface>() {}
     }
 
 
     @ActivityScope
     @Provides
-    internal fun provideBaseFPageStateAdapter(): BaseFPageStateAdapter {
+    fun provideBaseFPageStateAdapter(): BaseFPageStateAdapter {
         return BaseFPageStateAdapter(fragmentActivty!!)
     }
 
     @ActivityScope
     @Provides
-    internal fun provideBaseFPageAdapter(): BaseFPageAdapter {
+    fun provideBaseFPageAdapter(): BaseFPageAdapter {
         return BaseFPageAdapter(fragmentActivty!!)
     }
 

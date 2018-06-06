@@ -2,7 +2,8 @@ package com.yuntian.gankappforkotlin.ui.gank.inject
 
 import com.yuntian.basecomponent.dragger.AppComponent
 import com.yuntian.basecomponent.dragger.scope.ActivityScope
-
+import com.yuntian.gankappforkotlin.ui.gank.ArticleListFragment
+import com.yuntian.gankappforkotlin.ui.gank.GankMainFragment
 import dagger.Component
 
 /**
@@ -11,13 +12,16 @@ import dagger.Component
  */
 @ActivityScope
 @Component(modules = arrayOf(GankModule::class), dependencies = arrayOf(AppComponent::class))
-interface GankComponent
+interface GankComponent {
 
+    fun inject(fragment: GankMainFragment)
 
-//    void inject(GankMainFragment fragment);
-//
+    fun inject(fragment: ArticleListFragment)
 //    void inject(WelfareListFragment fragment);
 //
 //    void inject(RestListFragment fragment);
-//
-//    void inject(ArticleListFragment fragment);
+}
+
+
+
+

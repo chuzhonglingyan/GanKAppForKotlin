@@ -1,7 +1,8 @@
-package com.yuntian.gankappforkotlin.ui.gank.mvp
+package com.yuntian.gankappforkotlin.ui.gank
 
 import com.yuntian.basecomponent.mvp.BaseMvpFrgament
 import com.yuntian.gankappforkotlin.entity.GankInfo
+import com.yuntian.gankappforkotlin.ui.gank.mvp.GankContract
 
 /**
  * description 适配类 .
