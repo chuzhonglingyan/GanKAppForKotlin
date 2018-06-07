@@ -26,11 +26,11 @@ abstract class BaseRefreshWebViewActivity : BaseWebViewActivity(), OnRefreshList
     protected lateinit var toolBar: Toolbar
 
 
-    public override val layoutId: Int
+    override val layoutId: Int
         get() = 0
 
 
-    public override fun init() {
+    override fun init() {
         rooView = LinearLayout(this)
         rooView.orientation = LinearLayout.VERTICAL
         rooView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)

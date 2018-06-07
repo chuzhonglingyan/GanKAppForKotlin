@@ -7,6 +7,6 @@ package com.yuntian.gankappforkotlin.route
 object RoutePaths {
 
 
-    val WEB_PATH = "/web/webViewActivity"
+    const val WEB_PATH = "/web/webViewActivity"
 
 }

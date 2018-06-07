@@ -6,17 +6,17 @@ package com.yuntian.gankappforkotlin.storage.cons
  */
  object AppConstants {
 
-     val NEWS_ID = "news_id"
-     val NEWS_TYPE = "news_type"
-     val HOME_CURRENT_TAB_POSITION = "home_current_tab_position"
+    const val NEWS_ID = "news_id"
+    const val NEWS_TYPE = "news_type"
+    const val HOME_CURRENT_TAB_POSITION = "home_current_tab_position"  //常量
 
-     val GANK_DATATYPE = "dataType"
+    const val GANK_DATATYPE = "dataType"
 
-      val GANK_ARTICLE = "all"
-     val GANK_WELFARE = "福利"
-     val GANK_REST = "休息视频"
+    const val GANK_ARTICLE = "all"
+    const val GANK_WELFARE = "福利"
+    const val GANK_REST = "休息视频"
 
-     val VIDEO_ID_KEY = "VideoIdKey"
-     val VIDEO_TYPE_KEY = "VideoTypeKey"
+    const val VIDEO_ID_KEY = "VideoIdKey"
+    const val VIDEO_TYPE_KEY = "VideoTypeKey"
 
 }

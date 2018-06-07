@@ -7,21 +7,21 @@ package com.yuntian.gankappforkotlin.storage.cons
 object ApiConstants {
 
     // 房产id
-    val HOUSE_ID = "5YyX5Lqs"
+    const val HOUSE_ID = "5YyX5Lqs"
 
     // 头条TYPE
-    val HEADLINE_TYPE = "headline"
+    const val  HEADLINE_TYPE = "headline"
     // 房产TYPE
-    val HOUSE_TYPE = "house"
+    const val HOUSE_TYPE = "house"
     // 其他TYPE
-    val OTHER_TYPE = "list"
+    const val OTHER_TYPE = "list"
 
     // 头条id
-    val HEADLINE_ID = "T1348647909107"
+    const val HEADLINE_ID = "T1348647909107"
 
 
     // 避免出现 HTTP 403 Forbidden，参考：http://stackoverflow.com/questions/13670692/403-forbidden-with-java-but-not-web-browser
-    val AVOID_HTTP403_FORBIDDEN = "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11"
+    const val AVOID_HTTP403_FORBIDDEN = "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11"
 
 
     /**

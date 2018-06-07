@@ -46,9 +46,9 @@ abstract class BaseWebViewActivity : BaseActivity() {
 
 
     protected fun initWebViewSetting() {
-        mWebView!!.removeJavascriptInterface("searchBoxjavaBridge_")//解决 CVE-2014-1939 漏洞
-        mWebView!!.removeJavascriptInterface("accessibility")//解决  CVE-2014-7224  漏洞
-        mWebView!!.removeJavascriptInterface("accessibilityTraversal")//解决  CVE-2014-7224  漏洞
+        mWebView.removeJavascriptInterface("searchBoxjavaBridge_")//解决 CVE-2014-1939 漏洞
+        mWebView.removeJavascriptInterface("accessibility")//解决  CVE-2014-7224  漏洞
+        mWebView.removeJavascriptInterface("accessibilityTraversal")//解决  CVE-2014-7224  漏洞
         settingWebView()
     }
 
@@ -58,7 +58,7 @@ abstract class BaseWebViewActivity : BaseActivity() {
         //支持获取手势焦点，输入用户名、密码或其他
         mWebView.requestFocusFromTouch()
 
-        val settings = mWebView!!.settings
+        val settings = mWebView.settings
 
         settings.defaultTextEncodingName = "utf-8"//设置编码格式
 
@@ -100,7 +100,7 @@ abstract class BaseWebViewActivity : BaseActivity() {
         }
 
         //支持下载
-        mWebView!!.setDownloadListener(MyWebViewDownLoadListener(this))//支持下载
+        mWebView.setDownloadListener(MyWebViewDownLoadListener(this))//支持下载
 
         initWebViewClient()
         initWebChromeClient()
@@ -114,7 +114,7 @@ abstract class BaseWebViewActivity : BaseActivity() {
      * @param allow
      */
     fun isAllowAccessFile(allow: Boolean) {
-        val settings = mWebView!!.settings
+        val settings = mWebView.settings
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             //通过此API可以设置是否允许通过file url加载的Javascript读取其他的本地文件，
             // 这个设置在JELLY_BEAN以前的版本默认是允许，在JELLY_BEAN及以后的版本中默认是禁止的。
@@ -131,7 +131,7 @@ abstract class BaseWebViewActivity : BaseActivity() {
      */
     private fun addJSInterface() {
         // 注入对象'jsobj'，在网页中通过`jsobj.back(...)`调用
-        mWebView!!.addJavascriptInterface(TestObj(), "jsobj")
+        mWebView.addJavascriptInterface(TestObj(), "jsobj")
     }
 
     private inner class TestObj {
@@ -149,37 +149,36 @@ abstract class BaseWebViewActivity : BaseActivity() {
     private fun executeJS() {
         //在API19后可异步执行JS表达式，并通过回调返回值
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mWebView!!.evaluateJavascript("111+222") {
+            mWebView.evaluateJavascript("111+222") {
                 // value => "333"
             }
         } else {
             // 弹出提示框
-            mWebView!!.loadUrl("javascript:alert('hello')")
+            mWebView.loadUrl("javascript:alert('hello')")
             // 调用注入的jsobj.say方法
-            mWebView!!.loadUrl("javascript:jsobj.say('hello')")
+            mWebView.loadUrl("javascript:jsobj.say('hello')")
         }
     }
 
 
     protected fun initWebViewClient() {
-        mWebView!!.webViewClient = BaseWebViewClient()
+        mWebView.webViewClient = BaseWebViewClient()
     }
 
 
-    inner class BaseWebViewClient : WebViewClient() {
+    open inner class BaseWebViewClient : WebViewClient() {
 
         override fun shouldOverrideUrlLoading(view: WebView, url: String?): Boolean {
             if (url == null) return false
-              //todo
             try {
-//                if (url.startsWith("http:") || url.startsWith("https:")) {
-//                    view.loadUrl(url)
-//                    return true
-//                } else {
-//                    //                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//                    //                    startActivity(intent);
-//                    return true
-//                }
+                if (url.startsWith("http:") || url.startsWith("https:")) {
+                    view.loadUrl(url)
+                    return true
+                } else {
+                    //                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    //                    startActivity(intent);
+                    return true
+                }
                 return true
             } catch (e: Exception) { //防止crash (如果手机上没有安装处理某个scheme开头的url的APP, 会导致crash)
                 return false
@@ -234,8 +233,8 @@ abstract class BaseWebViewActivity : BaseActivity() {
     }
 
 
-    protected fun initWebChromeClient() {
-        mWebView!!.webChromeClient = BaseWebChromeClient()
+    open fun initWebChromeClient() {
+        mWebView.webChromeClient = BaseWebChromeClient()
     }
 
 
@@ -247,10 +246,10 @@ abstract class BaseWebViewActivity : BaseActivity() {
             // android 6.0 以下通过title获取
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                 //todo
-//                if (title.contains("404") || title.contains("500") || title.contains("Error")) {
-//                    //view.loadUrl("about:blank");// 避免出现默认的错误界面
-//                    // view.loadUrl(mErrorUrl);
-//                }
+                if (title.contains("404") || title.contains("500") || title.contains("Error")) {
+                    //view.loadUrl("about:blank");// 避免出现默认的错误界面
+                    // view.loadUrl(mErrorUrl);
+                }
             }
         }
     }
@@ -258,17 +257,17 @@ abstract class BaseWebViewActivity : BaseActivity() {
 
     fun clearWebViewResource() {
         if (mWebView != null) {
-            mWebView!!.removeAllViews()
-            (mWebView!!.parent as ViewGroup).removeView(mWebView)
-            mWebView!!.clearHistory()
-            mWebView!!.destroy()
+            mWebView.removeAllViews()
+            (mWebView.parent as ViewGroup).removeView(mWebView)
+            mWebView.clearHistory()
+            mWebView.destroy()
         }
     }
 
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK && mWebView!!.canGoBack()) {
-            mWebView!!.goBack()
+        if (keyCode == KeyEvent.KEYCODE_BACK && mWebView.canGoBack()) {
+            mWebView.goBack()
             return true
         }
         return super.onKeyDown(keyCode, event)
