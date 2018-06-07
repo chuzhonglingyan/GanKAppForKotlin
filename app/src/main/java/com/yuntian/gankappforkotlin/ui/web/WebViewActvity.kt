@@ -22,12 +22,12 @@ import com.yuntian.gankappforkotlin.route.RoutePaths.WEB_PATH
 @Route(path = WEB_PATH)
 class WebViewActvity : BaseRefreshWebViewActivity() {
 
+    @Autowired
+    @JvmField var url: String?=""
 
     @Autowired
-    var url: String? = null
+    @JvmField var title: String?=""
 
-    @Autowired
-    var title: String? = null
 
 
     override fun initData(savedInstanceState: Bundle?) {
