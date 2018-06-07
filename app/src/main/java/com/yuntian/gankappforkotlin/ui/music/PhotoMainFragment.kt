@@ -27,8 +27,9 @@ class PhotoMainFragment : BaseFragment() {
     }
 
 
+    //静态域
     companion object {
-        val TAG = "PhotoMainFragment"
+        const val TAG = "PhotoMainFragment"
     }
 
 

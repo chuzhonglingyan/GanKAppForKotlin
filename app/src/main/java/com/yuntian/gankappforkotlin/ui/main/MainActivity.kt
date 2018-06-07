@@ -26,7 +26,7 @@ import java.util.*
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
 
-    private var mItemId: Int = R.id.nav_camera  //用var定义变量,用val定义常量（相当于final）
+    private var mItemId: Int = R.id.nav_camera  //用var定义可读写变量,用val定义只读变量
 
     private lateinit var stackTabs: Stack<Int>  //延迟初始化
     private lateinit var fragmentList: MutableList<Fragment>

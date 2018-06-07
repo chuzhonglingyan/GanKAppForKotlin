@@ -25,7 +25,7 @@ import javax.inject.Inject
 class GankMainFragment : GankViewFragment() {
 
     companion object {
-        val TAG = "GankMainFragment"
+        const val  TAG = "GankMainFragment"
     }
 
     @Inject
