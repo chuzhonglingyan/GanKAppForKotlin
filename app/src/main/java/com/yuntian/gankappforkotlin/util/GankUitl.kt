@@ -61,7 +61,7 @@ object GankUitl {
      * @param height
      */
     fun getRequireImageUrl(url: String, width: Int, height: Int): String? {
-        if (!TextUtils.isEmpty(url) && url.contains("img.gank.io")) {
+        if (url?.contains("img.gank.io")) {
             val stringBuilder = StringBuilder()
             stringBuilder.append(url).append("?imageView2/0")
                     .append("/w/").append(width).append("/h/").append(height)

@@ -12,16 +12,16 @@ import com.yuntian.basecomponent.base.BaseRvAdapterK
 import com.yuntian.basecomponent.dragger.AppComponent
 import com.yuntian.gankappforkotlin.R
 import com.yuntian.gankappforkotlin.entity.GankInfo
-import com.yuntian.gankappforkotlin.storage.cons.AppConstants.GANK_DATATYPE
+import com.yuntian.gankappforkotlin.storage.cons.AppConstants
 import com.yuntian.gankappforkotlin.ui.gank.inject.DaggerGankComponent
 import com.yuntian.gankappforkotlin.ui.gank.inject.GankModule
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
-import kotlinx.android.synthetic.main.frgment_smart_list.*
+import kotlinx.android.synthetic.main.frgment_smart_list.view.*
 import javax.inject.Inject
 
 class ArticleListFragment : GankViewFragment() {
 
-    private lateinit var dataType: String
+    private  var dataType: String = ""
     private var startPage: Int = 0
 
     @Inject
@@ -39,8 +39,15 @@ class ArticleListFragment : GankViewFragment() {
 
     override fun initView() {
         startPage = 0
-        RecyclerViewUtil.initRecyclerViewV(rv, baseRvAdapter)
-        rv.itemAnimator = SlideInUpAnimator()
+        dataType = args?.getString(AppConstants.GANK_DATATYPE).orEmpty()
+
+        if (dataType.equals(AppConstants.GANK_WELFARE)) {
+            RecyclerViewUtil.initRecyclerViewSV(rootView.rv, baseRvAdapter, 2)
+        } else {
+            RecyclerViewUtil.initRecyclerViewV(rootView.rv, baseRvAdapter)
+        }
+
+        rootView.rv.itemAnimator = SlideInUpAnimator()
 
         baseRvAdapter.setOnItemDataClickListener(object : OnItemDataClickListenerImp<TypeInterface>() {
             override fun onItemClick(view: View?, item: Any?, truePos: Int, relativePos: Int) {
@@ -49,12 +56,12 @@ class ArticleListFragment : GankViewFragment() {
             }
         })
 
-        refreshLayout.setOnRefreshListener({
+        rootView.refreshLayout.setOnRefreshListener({
             startPage = 0
             mPresenter.getWelfarePhotos(dataType, startPage)
         })
-        refreshLayout.isEnableLoadMore = false
-        refreshLayout.setOnLoadMoreListener({
+        rootView.refreshLayout.isEnableLoadMore = false
+        rootView.refreshLayout.setOnLoadMoreListener({
             mPresenter.getWelfarePhotos(dataType, startPage)
         })
     }
@@ -64,8 +71,9 @@ class ArticleListFragment : GankViewFragment() {
     }
 
     override fun lazyLoad() {
-        dataType = args.getString(GANK_DATATYPE)
-        mPresenter.getWelfarePhotos(dataType, startPage)
+        if (dataType.isNotBlank()) {
+            mPresenter.getWelfarePhotos(dataType, startPage)
+        }
     }
 
 
@@ -73,9 +81,9 @@ class ArticleListFragment : GankViewFragment() {
         super.showMsg(message, code)
         if (startPage == 0) {
             hasLoad = false
-            refreshLayout.finishRefresh(1000, false)
+            rootView.refreshLayout.finishRefresh(1000, false)
         } else {
-            refreshLayout.finishLoadMore(1000, false, false)
+            rootView.refreshLayout.finishLoadMore(1000, false, false)
         }
     }
 
@@ -83,17 +91,17 @@ class ArticleListFragment : GankViewFragment() {
         super.getWelfarePhotos(result)
         if (startPage == 0) {
             baseRvAdapter.data = result
-            refreshLayout.finishRefresh()
-            refreshLayout.isEnableLoadMore = true
+            rootView.refreshLayout.finishRefresh()
+            rootView.refreshLayout.isEnableLoadMore = true
             hasLoad = true
         } else {
             baseRvAdapter.allData = result
-            refreshLayout.finishLoadMore()
+            rootView.refreshLayout.finishLoadMore()
         }
         if (result.isNotEmpty()) {
             startPage += 1
         } else {
-            refreshLayout.finishLoadMoreWithNoMoreData()
+            rootView.refreshLayout.finishLoadMoreWithNoMoreData()
         }
     }
 

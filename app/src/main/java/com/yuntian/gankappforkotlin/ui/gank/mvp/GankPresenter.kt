@@ -15,8 +15,8 @@ class GankPresenter @Inject
 constructor() : GankContract.Presenter() {
 
 
-    override fun getWelfarePhotos(dataTtpe: String, startPage: Int) {
-        mModel.getWelfarePhotos(dataTtpe, startPage)
+    override fun getWelfarePhotos(datatypeStr: String, startPage: Int) {
+        mModel.getWelfarePhotos(datatypeStr, startPage)
                 .subscribe(object : CustomObserver<List<GankInfo>>() {
                     override fun _onNext(photoGirls: List<GankInfo>) {
                         mView.getWelfarePhotos(photoGirls)

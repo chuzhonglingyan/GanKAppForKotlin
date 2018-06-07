@@ -24,8 +24,8 @@ class ArticleViewHolder(itemView: View) : BaseViewHolder<GankInfo>(itemView) {
         //此图我只需要 宽度：100 的图片，而无需原始图片，则在请求图片的参数上带上： ?imageView2/0/w/100 即可
         //http://img.gank.io/6ade6383-bc8e-40e4-9919-605901ad0ca5?imageView2/0/w/100
         // var ivIcon: ImageView = getView(R.id.iv_icon)
-        val params = itemView.iv_icon.getLayoutParams()
-        var urlImage = info.images!![0]
+        val params = itemView.iv_icon.layoutParams
+        var urlImage: String = info.images?.get(0).orEmpty()
 
         ImageLoaderUtil.displayImage(GankUitl.getRequireImageUrl(urlImage, params.width, params.height), itemView.iv_icon)
 

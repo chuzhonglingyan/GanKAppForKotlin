@@ -12,8 +12,11 @@ import android.view.WindowManager
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yuntian.baselibs.base.BaseActivity
+import com.yuntian.baselibs.util.FragmentHelper
 import com.yuntian.gankappforkotlin.R
 import com.yuntian.gankappforkotlin.storage.cons.AppConstants.HOME_CURRENT_TAB_POSITION
+import com.yuntian.gankappforkotlin.ui.gank.GankMainFragment
+import com.yuntian.gankappforkotlin.ui.music.PhotoMainFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -23,10 +26,10 @@ import java.util.*
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
 
-    var mItemId: Int = R.id.nav_camera  //用var定义变量,用val定义常量（相当于final）
+    private var mItemId: Int = R.id.nav_camera  //用var定义变量,用val定义常量（相当于final）
 
-    lateinit var stackTabs: Stack<Int>  //延迟初始化
-    lateinit var fragmentList: MutableList<Fragment>
+    private lateinit var stackTabs: Stack<Int>  //延迟初始化
+    private lateinit var fragmentList: MutableList<Fragment>
 
 
     override val layoutId: Int
@@ -53,7 +56,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         LogUtils.d("HOME_CURRENT_TAB_POSITION=" + mItemId)
     }
 
-    fun initDrawerLayout(drawerLayout: DrawerLayout, navView: NavigationView) {
+    private fun initDrawerLayout(drawerLayout: DrawerLayout, navView: NavigationView) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             val localLayoutParams = window.attributes
@@ -87,12 +90,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         //新闻
             R.id.nav_camera -> {
                 stackTabs.clear()
-                //FragmentHelper.addHideShowFragment(this, fragmentList, GankMainFragment::class.java, R.id.fl_container, GankMainFragment.TAG)
+                FragmentHelper.addHideShowFragment(this, fragmentList, GankMainFragment::class.java, R.id.fl_container, GankMainFragment.TAG)
                 addToStack(R.id.nav_camera)
             }
         //图片
             R.id.nav_gallery -> {
-                //FragmentHelper.addHideShowFragment(this, fragmentList, PhotoMainFragment::class.java, R.id.fl_container, PhotoMainFragment.TAG)
+                FragmentHelper.addHideShowFragment(this, fragmentList, PhotoMainFragment::class.java, R.id.fl_container, PhotoMainFragment.TAG)
                 addToStack(R.id.nav_gallery)
             }
         //视频
@@ -106,7 +109,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
 
-    fun addToStack(id: Int) {
+    private fun addToStack(id: Int) {
         if (!stackTabs.contains(id)) {
             stackTabs.push(id)
         }
@@ -130,12 +133,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
 
-    var mExitTime: Long = 0
+    private var mExitTime: Long = 0
 
     /**
      * 退出
      */
-    fun exit() {
+    private fun exit() {
         if (System.currentTimeMillis() - mExitTime > 2000) {
             ToastUtils.showShort("再按一次退出程序")
             mExitTime = System.currentTimeMillis()

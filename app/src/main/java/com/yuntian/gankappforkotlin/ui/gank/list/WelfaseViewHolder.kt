@@ -1,12 +1,13 @@
 package com.yuntian.gankappforkotlin.ui.gank.list
 
 import android.view.View
+import android.widget.ImageView
 import com.blankj.utilcode.util.SizeUtils
 import com.yuntian.adapterlib.base.BaseViewHolder
 import com.yuntian.baselibs.glide.ImageLoaderUtil
+import com.yuntian.gankappforkotlin.R
 import com.yuntian.gankappforkotlin.entity.GankInfo
 import com.yuntian.gankappforkotlin.util.GankUitl
-import kotlinx.android.synthetic.main.item_gank_rest_list.view.*
 
 
 /**
@@ -24,16 +25,16 @@ class WelfaseViewHolder(itemView: View) : BaseViewHolder<GankInfo>(itemView) {
     }
 
     override fun onBindViewData(info: GankInfo, pos: Int) {
-
+        var ivIcon: ImageView = getView(R.id.iv_welfare_img)
         // 返回的数据有像素分辨率，根据这个来缩放图片大小
-        var params = itemView.iv_welfare_img.layoutParams
+        var params = ivIcon.layoutParams
 
         params.width = mPhotoWidth
-        params.height = GankUitl.calcPhotoHeight(info.pixel!!, mPhotoWidth)
+        params.height = GankUitl.calcPhotoHeight(info.pixel.orEmpty(), mPhotoWidth)
 
-        itemView.iv_welfare_img.layoutParams = params;
+        ivIcon.layoutParams = params;
 
-        ImageLoaderUtil.displayImage(info.url, itemView.iv_welfare_img);
+        ImageLoaderUtil.displayImage(info.url, ivIcon);
     }
 
 }

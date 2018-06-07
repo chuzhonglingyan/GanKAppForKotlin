@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.blankj.utilcode.util.LogUtils
 
 /**
@@ -16,10 +15,11 @@ import com.blankj.utilcode.util.LogUtils
  */
 abstract class BaseFragment : Fragment() {
 
-    protected var mContext: Context? = null
+    protected lateinit var mContext: Context
     protected lateinit var mActivity: Activity
+
     protected lateinit var rootView: View
-    protected lateinit var args: Bundle
+    protected  var args: Bundle? =null
 
     protected var isCreate = false //fragment创建了
     protected var isViewInitialized = false //view初始化了
@@ -29,7 +29,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        mContext = context
+        mContext = context!!
         mActivity = (context as Activity?)!!
     }
 

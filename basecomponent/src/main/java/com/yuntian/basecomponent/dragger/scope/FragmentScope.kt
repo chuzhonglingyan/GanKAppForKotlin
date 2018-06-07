@@ -15,8 +15,6 @@
  */
 package com.yuntian.basecomponent.dragger.scope
 
-import java.lang.annotation.Retention
-import java.lang.annotation.RetentionPolicy.RUNTIME
 import javax.inject.Scope
 
 /**
@@ -25,5 +23,5 @@ import javax.inject.Scope
  * correct component.
  */
 @Scope
-@Retention(RUNTIME)
+@kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
 annotation class FragmentScope

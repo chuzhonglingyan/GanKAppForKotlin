@@ -14,7 +14,7 @@ import com.yuntian.gankappforkotlin.storage.cons.AppConstants.GANK_REST
 import com.yuntian.gankappforkotlin.storage.cons.AppConstants.GANK_WELFARE
 import com.yuntian.gankappforkotlin.ui.gank.inject.DaggerGankComponent
 import com.yuntian.gankappforkotlin.ui.gank.inject.GankModule
-import kotlinx.android.synthetic.main.fragment_gank_main.*
+import kotlinx.android.synthetic.main.fragment_gank_main.view.*
 import java.util.*
 import javax.inject.Inject
 
@@ -24,6 +24,9 @@ import javax.inject.Inject
  */
 class GankMainFragment : GankViewFragment() {
 
+    companion object {
+        val TAG = "GankMainFragment"
+    }
 
     @Inject
     lateinit var baseFPageAdapter: BaseFPageAdapter
@@ -34,7 +37,7 @@ class GankMainFragment : GankViewFragment() {
 
 
     override fun initView() {
-        ToolBarUtil.initToolBar(mActivity, tool_bar, true, "干货")
+        ToolBarUtil.initToolBar(mActivity, rootView.tool_bar, true, "干货")
     }
 
     override fun initData(savedInstanceState: Bundle?) {
@@ -54,8 +57,8 @@ class GankMainFragment : GankViewFragment() {
         fragments.add(FragmentHelper.newInstance(ArticleListFragment::class.java, bundleRest))
 
         baseFPageAdapter.updateFragments(childFragmentManager, fragments, arrayOf("技术文章", "福利生活", "休息视频"))
-        view_pager.adapter = baseFPageAdapter
-        tab_layout.setupWithViewPager(view_pager)
+        rootView.view_pager.adapter =baseFPageAdapter
+        rootView.tab_layout.setupWithViewPager(rootView.view_pager)
     }
 
     override fun lazyLoad() {

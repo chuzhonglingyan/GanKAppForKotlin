@@ -16,7 +16,7 @@ abstract class BaseLazyFragment : BaseFragment() {
 
     protected var isUserVisible = false
     protected var hasLoad = false
-    var isCache = false
+    protected  var isCache = false
     protected var isInitialized = false
     private var isPrepared = true
 
@@ -41,14 +41,16 @@ abstract class BaseLazyFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (isCache && rootView != null) {
+        if (isCache&&isInitialized){
             return rootView
         }
-        val view = super.onCreateView(inflater, container, savedInstanceState)
+        rootView= super.onCreateView(inflater, container, savedInstanceState)!!
+        isInitialized = true
+
         init()
         initView()
         initData(savedInstanceState)
-        return view
+        return rootView
     }
 
 

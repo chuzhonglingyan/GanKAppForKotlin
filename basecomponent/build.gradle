@@ -26,10 +26,6 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
-    }
-
     kapt {
         generateStubs = true
     }
