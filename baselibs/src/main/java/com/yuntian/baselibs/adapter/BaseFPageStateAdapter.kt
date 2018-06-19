@@ -29,7 +29,7 @@ class BaseFPageStateAdapter : FragmentStatePagerAdapter {
         if (list != null) {
             data.addAll(list)
         }
-        titles?.addAll(titleList)
+        titles.addAll(titleList)
     }
 
     constructor(fragmentManager: FragmentManager, list: List<Fragment>?, titleList: List<String>) : super(fragmentManager) {
@@ -37,7 +37,7 @@ class BaseFPageStateAdapter : FragmentStatePagerAdapter {
         if (list != null) {
             data.addAll(list)
         }
-        titles?.addAll(titleList)
+        titles.addAll(titleList)
     }
 
     constructor(fragmentManager: FragmentManager, list: List<Fragment>, strList: Array<String>) : this(fragmentManager, list, toList(strList)) {}
@@ -131,7 +131,7 @@ class BaseFPageStateAdapter : FragmentStatePagerAdapter {
      * @param mTitles
      */
     fun updateFragments(fm: FragmentManager, fragments: List<Fragment>, mTitles: List<String>) {
-        if (data != null && data.size > 0) {
+        if (data.size > 0) {
             val ft = fm.beginTransaction()  //移除之前所有的Fragment
             for (f in data) {
                 ft.remove(f)
@@ -154,7 +154,7 @@ class BaseFPageStateAdapter : FragmentStatePagerAdapter {
      * @param mTitles
      */
     fun updateFragments(fm: FragmentManager, fragments: List<Fragment>, mTitles: Array<String>) {
-        if (data != null && data.size > 0) {
+        if ( data.size > 0) {
             val ft = fm.beginTransaction()  //移除之前所有的Fragment
             for (f in data) {
                 ft.remove(f)

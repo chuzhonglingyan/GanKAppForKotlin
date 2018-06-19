@@ -7,8 +7,8 @@ package com.yuntian.gankappforkotlin.route
 object RouteParameters {
 
 
-    val URL = "url"
-    val TITLE = "title"
+    const val URL = "url"
+    const  val TITLE = "title"
 
 
 }

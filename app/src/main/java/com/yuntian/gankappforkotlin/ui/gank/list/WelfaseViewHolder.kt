@@ -25,16 +25,16 @@ class WelfaseViewHolder(itemView: View) : BaseViewHolder<GankInfo>(itemView) {
     }
 
     override fun onBindViewData(info: GankInfo, pos: Int) {
-        var ivIcon: ImageView = getView(R.id.iv_welfare_img)
+        val ivIcon: ImageView = getView(R.id.iv_welfare_img)
         // 返回的数据有像素分辨率，根据这个来缩放图片大小
-        var params = ivIcon.layoutParams
+        val params = ivIcon.layoutParams
 
         params.width = mPhotoWidth
         params.height = GankUitl.calcPhotoHeight(info.pixel.orEmpty(), mPhotoWidth)
 
-        ivIcon.layoutParams = params;
+        ivIcon.layoutParams = params
 
-        ImageLoaderUtil.displayImage(info.url, ivIcon);
+        ImageLoaderUtil.displayImage(info.url, ivIcon)
     }
 
 }

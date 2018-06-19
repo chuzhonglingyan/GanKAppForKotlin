@@ -63,7 +63,7 @@ constructor() : GankContract.Model {
                     .compose(RxHandleResult.handleResult())
                     .concatMap { list -> Observable.fromIterable(list) }
                     .map({ ganInfo ->
-                        ganInfo.datetype = GankUitl.getDataType(datatypeStr);
+                        ganInfo.datetype = GankUitl.getDataType(datatypeStr)
                         ganInfo
                     })
                     .toList().toFlowable().toObservable()

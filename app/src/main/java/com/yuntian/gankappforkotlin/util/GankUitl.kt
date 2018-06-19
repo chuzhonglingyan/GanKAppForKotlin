@@ -19,12 +19,10 @@ object GankUitl {
      * @param datyType
      */
     fun getDataType(datyType: String): Int {
-        return if (TextUtils.equals(datyType, GANK_WELFARE)) {
-            ViewHolderUtil.ITEM_TYPE_GANK_WELFARE
-        } else if (TextUtils.equals(datyType, GANK_REST)) {
-            ViewHolderUtil.ITEM_TYPE_GANK_REST
-        } else {
-            ViewHolderUtil.ITEM_TYPE_GANK_ARTICLE
+        return when {
+            TextUtils.equals(datyType, GANK_WELFARE) -> ViewHolderUtil.ITEM_TYPE_GANK_WELFARE
+            TextUtils.equals(datyType, GANK_REST) -> ViewHolderUtil.ITEM_TYPE_GANK_REST
+            else -> ViewHolderUtil.ITEM_TYPE_GANK_ARTICLE
         }
     }
 
@@ -61,7 +59,7 @@ object GankUitl {
      * @param height
      */
     fun getRequireImageUrl(url: String, width: Int, height: Int): String? {
-        if (url?.contains("img.gank.io")) {
+        if (url.contains("img.gank.io")) {
             val stringBuilder = StringBuilder()
             stringBuilder.append(url).append("?imageView2/0")
                     .append("/w/").append(width).append("/h/").append(height)

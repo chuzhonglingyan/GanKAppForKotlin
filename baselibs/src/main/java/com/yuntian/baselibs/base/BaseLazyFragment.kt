@@ -17,7 +17,7 @@ abstract class BaseLazyFragment : BaseFragment() {
     protected var isUserVisible = false
     protected var hasLoad = false
     protected  var isCache = false
-    protected var isInitialized = false
+    protected var isInitialized = false  //view是否已经初始化
     private var isPrepared = true
 
     /**

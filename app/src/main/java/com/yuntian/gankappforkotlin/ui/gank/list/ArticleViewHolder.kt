@@ -1,5 +1,6 @@
 package com.yuntian.gankappforkotlin.ui.gank.list
 
+import android.annotation.SuppressLint
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
 import com.yuntian.adapterlib.base.BaseViewHolder
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.item_gank_article_list.view.*
 class ArticleViewHolder(itemView: View) : BaseViewHolder<GankInfo>(itemView) {
 
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewData(info: GankInfo, pos: Int) {
         //mBinding.setGanArticleItem(info);
         //http://img.gank.io/90db2f35-2e9d-4d75-b5a9-53ee1719b57b
@@ -25,7 +27,7 @@ class ArticleViewHolder(itemView: View) : BaseViewHolder<GankInfo>(itemView) {
         //http://img.gank.io/6ade6383-bc8e-40e4-9919-605901ad0ca5?imageView2/0/w/100
         // var ivIcon: ImageView = getView(R.id.iv_icon)
         val params = itemView.iv_icon.layoutParams
-        var urlImage: String = info.images?.get(0).orEmpty()
+        val urlImage: String = info.images?.get(0).orEmpty()
 
         ImageLoaderUtil.displayImage(GankUitl.getRequireImageUrl(urlImage, params.width, params.height), itemView.iv_icon)
 
@@ -34,8 +36,8 @@ class ArticleViewHolder(itemView: View) : BaseViewHolder<GankInfo>(itemView) {
             ARouter.getInstance().build(RoutePaths.WEB_PATH)
                     .withString(RouteParameters.URL, info.url)
                     .withString(RouteParameters.TITLE, info.desc)
-                    .navigation();
-        });
+                    .navigation()
+        })
 
         itemView.tv_ganArticleItem_author.text = "${context.resources.getString(R.string.item_author)}${info.who}"
         itemView.tv_ganArticleItem_publish_time.text = "${context.resources.getString(R.string.item_published)}${info.publishedAt}"

@@ -37,7 +37,7 @@ class WebViewActvity : BaseRefreshWebViewActivity() {
         // mWebView.loadUrl(url);
         smartRefreshLayout.autoRefresh()
         // ARouter会自动对字段进行赋值，无需主动获取
-        LogUtils.d("url:", url + ",title:" + title)
+        LogUtils.d("url:", "$url,title:$title")
     }
 
 
@@ -56,7 +56,7 @@ class WebViewActvity : BaseRefreshWebViewActivity() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap) {
                 super.onPageStarted(view, url, favicon)
                 startUrl = url
-                LogUtils.d("startUrl:" + startUrl)
+                LogUtils.d("startUrl:$startUrl")
             }
 
             override fun shouldOverrideUrlLoading(view: WebView, url: String?): Boolean {
