@@ -28,6 +28,8 @@ class GankInfo : TypeInterface {
     var isUsed: Boolean = false
     var who: String? = null
 
+
+
     // 保存图片宽高
     var pixel: String? = null
 

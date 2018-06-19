@@ -1,6 +1,7 @@
 package com.yuntian.gankappforkotlin.ui.gank.mvp
 
 import android.text.TextUtils
+import com.yuntian.baselibs.glide.ImageLoaderUtil
 import com.yuntian.baselibs.net.core.NetApi
 import com.yuntian.baselibs.net.result.RxHandleResult
 import com.yuntian.gankappforkotlin.entity.GankInfo
@@ -10,6 +11,8 @@ import com.yuntian.gankappforkotlin.storage.cons.AppConstants.GANK_REST
 import com.yuntian.gankappforkotlin.storage.cons.AppConstants.GANK_WELFARE
 import com.yuntian.gankappforkotlin.util.GankUitl
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
@@ -42,8 +45,18 @@ constructor() : GankContract.Model {
                         ganInfo.datetype = GankUitl.getDataType(datatypeStr)
                         ganInfo
                     }
-                    .filter { ganInfo -> !(ganInfo.type == GANK_WELFARE || ganInfo.type == GANK_REST) }
+                    .observeOn(Schedulers.io())
+                    .filter { ganInfo ->
+                        try {
+                            ganInfo.pixel = ImageLoaderUtil.calePhotoSize(ganInfo.url);
+                            true;
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                            false
+                        }
+                    }
                     .toList().toFlowable().toObservable()
+                    .observeOn(AndroidSchedulers.mainThread());
             else -> NetApi.getApi().create(GankService::class.java)
                     .getWelfarePhotos(datatypeStr, startPage)
                     .compose(RxHandleResult.handleResult())
