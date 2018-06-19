@@ -3,6 +3,8 @@ package com.yuntian.baselibs.net.converter;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 
@@ -38,17 +40,13 @@ public class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> 
     @Override
     public T convert(ResponseBody value) throws IOException {
         String response = value.string();
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-            if (jsonObject.has("data")) {
-                String dataStr = jsonObject.get("data").toString();
-                if (TextUtils.isEmpty(dataStr)) {
-                    jsonObject.remove("data");
-                    response = jsonObject.toString();
-                }
+        JsonObject jsonObject = new JsonParser().parse(response).getAsJsonObject();
+        if (jsonObject.has("data")) {
+            String dataStr = jsonObject.get("data").toString();
+            if (TextUtils.isEmpty(dataStr)) {
+                jsonObject.remove("data");
+                response = jsonObject.toString();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
         MediaType contentType = value.contentType();
         Charset charset = contentType != null ? contentType.charset(UTF_8) : UTF_8;
